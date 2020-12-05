@@ -1,0 +1,19 @@
+section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    button {
+        width: 70vw;
+        height: 70vw;
+        border-radius: 10em;
+        background-color: crimson;
+        color: white;
+        border: none;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
