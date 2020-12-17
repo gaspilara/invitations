@@ -1,0 +1,43 @@
+<section>
+  <form>
+    <div>
+      <div class="form-group">
+        <input type="text" class="form-control" [ngClass]="{'is-invalid': !isValidName}" placeholder="Name" name="name-guest" (ngModelChange)="changeValidName()" [(ngModel)]="name">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" [ngClass]="{'is-invalid': !isValidContact}" placeholder="Contact" name="contact-guest" (ngModelChange)="changeValidContact()" [(ngModel)]="contact">
+      </div>
+      <div class="form-group">
+        <label for="rr">Is Host:</label>
+          <div>
+            <div class="form-check-inline">
+                <input class="form-check-input" type="radio" name="host-guest" (click)="onHostChange(true)">
+                <label class="form-check-label" for="optionYes">Yes</label>
+            </div>
+            <div class="form-check-inline">
+                <input class="form-check-input" type="radio" name="host-guest" (click)="onHostChange(false)" checked>
+                <label class="form-check-label" for="optionNo">No</label>
+            </div>
+          </div>
+          <ng-container *ngIf="quantityN2">
+            <div class="form-group">
+              <input type="number" class="form-control" placeholder="Guests quantity" name="quantity-guest" (ngModelChange)="changeValidContact()" [(ngModel)]="guestsQuantity">
+            </div>
+          </ng-container>
+      </div>
+      <div>  
+        <button class="btn btn-primary form-control" (click)="addGuest()">Add guest</button>
+      </div>
+    </div>
+  </form>
+  
+  <ng-container *ngIf="guests.length!==0">
+    <ul class="list-group">
+      <button class="btn btn-success form-control" (click)="createList()"> 
+        Create list <span class="badge bg-danger rounded-pill">{{guests.length}}</span>
+      </button>
+      <li *ngFor="let g of guests" class="list-group-item">{{g.name}}</li>
+    </ul>
+  </ng-container>
+
+</section>

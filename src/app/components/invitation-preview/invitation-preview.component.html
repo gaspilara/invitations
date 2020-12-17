@@ -1,0 +1,23 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{newEvent.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Duration: {{newEvent.duration}} hs</h6>
+        <p class="card-text">{{newEvent.thematic}}</p>
+        <p class="card-text">Date: {{newEvent.date}}</p>
+        <p class="card-text">Location: {{newEvent.adress}}</p>
+    </div>
+</div>
+
+<div class="list-group">
+    <h3 class="active">{{newEvent.guestList.length}} guests :)</h3>
+    <ng-container *ngFor="let g of newEvent.guestList">
+        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{g.name}}</h5>
+                <small>Host level: {{g.guestsQuantity}}</small>
+            </div>
+            <p class="mb-1">Contact: {{g.contact}}</p>
+            <small>Code: <span class="text-warning bg-dark">{{g.code}}</span></small>
+        </a>
+    </ng-container>
+</div>

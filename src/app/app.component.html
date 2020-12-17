@@ -1,6 +1,8 @@
-<create-event-init
-    *ngIf=showCreateEvent
-    (hideButton)="showCreateEventInit()"
->
+<create-event-init *ngIf=showCreateEvent (hideButton)="showCreateEventInit()"></create-event-init>
 
-</create-event-init>
+<form-event-data *ngIf=showFormEventData (hideButton)="showFormListInConfig()"></form-event-data>
+
+<form-guest-list *ngIf=showFormGuestsList (hideButton)="showInvitation()"></form-guest-list>
+
+<invitation-preview *ngIf=showInvitationPreview></invitation-preview>
+

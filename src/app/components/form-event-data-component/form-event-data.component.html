@@ -1,0 +1,54 @@
+<section>
+  <div>
+    
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Name" name="name" 
+        [(ngModel)]="name" 
+      >
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="fecha" id="fecha" placeholder="DD/MM/YYYY" 
+        ngbDatepicker
+        rInputMask="99/99/9999"
+        #datePickerFResD="ngbDatepicker" 
+        [minDate]="today"
+        [ngClass]="{'is-invalid' : !isFechaValid }" 
+        [(ngModel)]="eventDate"
+        (click)="datePickerFResD.toggle()" 
+        (ngModelChange)="onFechaChange(eventDate)"
+      >
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="Duration (hours)" name="duration" 
+        [(ngModel)]="duration" 
+        [max]="48"
+        [min]="1"
+      >
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Thematic" name="thematic" 
+        [(ngModel)]="thematic"
+      >
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+    </div>
+  
+    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+      <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+        (dragEnd)="markerDragEnd($event)"></agm-marker>
+    </agm-map>
+    <h5>Address: {{address}}</h5>
+    <div>Latitude: {{latitude}}</div>
+    <div>Longitude: {{longitude}}</div>
+
+    <div class="form-group">
+      <button class="btn btn-success form-control" 
+        (click)="createEvent()" 
+      > CREATE EVENT 
+      </button>
+    </div>
+    
+  </div>
+</section>
