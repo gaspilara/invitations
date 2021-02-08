@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Guest } from '../models/guest';
+import { GuestFirestoreService } from './firestore/guest.firestore.service';
 import { GuestService } from './guest.service';
 
 @Injectable({
@@ -14,7 +15,8 @@ export class EventService {
     eventDate: any;
     adress: any;
 
-    constructor(private guestService: GuestService) { }
+    // constructor(private guestService: GuestService) { }
+    constructor(private guestFirestoreService: GuestFirestoreService) { }
 
     setEvent(name: string, duration: number, thematic: string, eventDate: any, adress: any) {
         this.name = name;
@@ -31,7 +33,8 @@ export class EventService {
             date: this.eventDate,
             duration: this.duration,
             thematic: this.thematic,
-            guestList: this.guestService.getGuests(),
+            // guestList: this.guestService.getGuests(),
+            guestList: this.guestFirestoreService.getGuests(),
         }
     }
 

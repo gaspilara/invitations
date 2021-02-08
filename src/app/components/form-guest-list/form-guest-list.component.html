@@ -1,32 +1,57 @@
 <section>
-  <form>
+  <form (ngSubmit)="newGuest(newGuestForm.value)" [formGroup]="newGuestForm">
     <div>
       <div class="form-group">
-        <input type="text" class="form-control" [ngClass]="{'is-invalid': !isValidName}" placeholder="Name" name="name-guest" (ngModelChange)="changeValidName()" [(ngModel)]="name">
+        <input type="hidden" formControlName="id">
+        <input type="text" class="form-control" placeholder="Name"
+          formControlName="name" 
+          [ngClass]="{'is-invalid': !isValidName}" 
+          (ngModelChange)="changeValidName()" 
+          [(ngModel)]="name"
+        >
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" [ngClass]="{'is-invalid': !isValidContact}" placeholder="Contact" name="contact-guest" (ngModelChange)="changeValidContact()" [(ngModel)]="contact">
+        <input type="text" class="form-control" placeholder="Contact" name="contact-guest" 
+          formControlName="contact" 
+          [ngClass]="{'is-invalid': !isValidContact}"
+          (ngModelChange)="changeValidContact()" 
+          [(ngModel)]="contact"
+        >
       </div>
       <div class="form-group">
         <label for="rr">Is Host:</label>
           <div>
             <div class="form-check-inline">
-                <input class="form-check-input" type="radio" name="host-guest" (click)="onHostChange(true)">
+                <input class="form-check-input" type="radio"
+                  formControlName="host"  
+                  (click)="onHostChange(true)"
+                >
                 <label class="form-check-label" for="optionYes">Yes</label>
             </div>
             <div class="form-check-inline">
-                <input class="form-check-input" type="radio" name="host-guest" (click)="onHostChange(false)" checked>
+                <input class="form-check-input" type="radio" name="host-guest" checked
+                  formControlName="host" 
+                  (click)="onHostChange(false)"
+                >
                 <label class="form-check-label" for="optionNo">No</label>
             </div>
           </div>
           <ng-container *ngIf="quantityN2">
             <div class="form-group">
-              <input type="number" class="form-control" placeholder="Guests quantity" name="quantity-guest" (ngModelChange)="changeValidContact()" [(ngModel)]="guestsQuantity">
+              <input type="number" class="form-control" placeholder="Guests quantity"
+                formControlName="guestsQuantity" 
+                (ngModelChange)="changeValidContact()" 
+                [(ngModel)]="guestsQuantity"
+              >
             </div>
           </ng-container>
       </div>
       <div>  
-        <button class="btn btn-primary form-control" (click)="addGuest()">Add guest</button>
+        <button type="submit" class="btn btn-primary form-control"
+          (click)="addGuest()"
+          [disabled]="!newGuestForm.valid"
+        > Add guest
+        </button>
       </div>
     </div>
   </form>

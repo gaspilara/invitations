@@ -8,15 +8,19 @@ import { AppComponent } from './app.component';
 import { CreateEventInitComponent } from './components/create-event-init/create-event-init.component';
 import { FormEventDataComponent } from './components/form-event-data-component/form-event-data.component';
 import { FormGuestListComponent } from './components/form-guest-list/form-guest-list.component';
-import { FormsModule } from '@angular/forms';
 import { InvitationPreview } from './components/invitation-preview/invitation-preview.component';
 
-//SERVICES
+// UTILITIES / SERVICES
 import { GuestService } from './services/guest.service';
 import { EventService } from './services/event.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AgmCoreModule } from '@agm/core';
+
+// IMPORTS
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { CatsComponent } from './components/cats/cats.component';
 
 @NgModule({
   declarations: [
@@ -25,16 +29,19 @@ import { AgmCoreModule } from '@agm/core';
     FormEventDataComponent,
     FormGuestListComponent,
     InvitationPreview,
+    CatsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
-    AgmCoreModule.forRoot({
+    AgmCoreModule.forRoot({ // para el map location
       apiKey: 'AIzaSyAm4Ba2R74qduInxBDtatr0GGQldjUS3YU',
       libraries: ['places']
     }),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     GuestService,
